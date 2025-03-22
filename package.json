@@ -1,0 +1,37 @@
+{
+  "name": "scrapping",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@avalabs/avacloud-sdk": "^0.11.0",
+    "@avalabs/avalanche-wallet-sdk": "^0.19.1",
+    "@avalabs/avalanchejs": "^5.0.0",
+    "@pangolindex/sdk": "^5.7.8",
+    "avalanche": "^3.16.0",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "ether.js": "^1.0.0",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "web3": "^4.16.0",
+    "ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/ws": "^8.18.0"
+  }
+}

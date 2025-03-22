@@ -1,0 +1,61 @@
+{
+    "tx": {
+        "unsignedTx": {
+            "networkID": 1,
+            "blockchainID": "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM",
+            "outputs": [
+                {
+                    "assetID": "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
+                    "fxID": "spdxUxVJQbX85MGxMHbKw1sHxMnSqJ3QBzDyDYEP3h6TLuxqQ",
+                    "output": {
+                        "addresses": [
+                            "X-avax13k6hxpfuu80dlnqlqs0dxxjrzl4lxz94n38vnw"
+                        ],
+                        "amount": 4999000004,
+                        "locktime": 0,
+                        "threshold": 1
+                    }
+                },
+                {
+                    "assetID": "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
+                    "fxID": "spdxUxVJQbX85MGxMHbKw1sHxMnSqJ3QBzDyDYEP3h6TLuxqQ",
+                    "output": {
+                        "addresses": [
+                            "X-avax13k6hxpfuu80dlnqlqs0dxxjrzl4lxz94n38vnw"
+                        ],
+                        "amount": 1879557392320,
+                        "locktime": 0,
+                        "threshold": 1
+                    }
+                }
+            ],
+            "inputs": [
+                {
+                    "txID": "2Z1aibriTMLXNmZN7GjGcebzYvgqLKUoNxyxiSZKzHFnHo52Es",
+                    "outputIndex": 0,
+                    "assetID": "FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z",
+                    "fxID": "spdxUxVJQbX85MGxMHbKw1sHxMnSqJ3QBzDyDYEP3h6TLuxqQ",
+                    "input": {
+                        "amount": 1884557392324,
+                        "signatureIndices": [
+                            0
+                        ]
+                    }
+                }
+            ],
+            "memo": "0x"
+        },
+        "credentials": [
+            {
+                "fxID": "spdxUxVJQbX85MGxMHbKw1sHxMnSqJ3QBzDyDYEP3h6TLuxqQ",
+                "credential": {
+                    "signatures": [
+                        "0x842d1cee59fb36444a680924813ef8bb0054bdab602a1fb263ec7668bbaa9bf948dc141c8ac98eccea267490e92fa1596db64504f956a09f45230e5a8fdc492a00"
+                    ]
+                }
+            }
+        ],
+        "id": "2d3qTWb8hAF3Zj4n29jLPaZVEczxmUqwWRVmN7XWkJVENqtc34"
+    },
+    "encoding": "json"
+}
