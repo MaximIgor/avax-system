@@ -6,10 +6,14 @@
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["node"]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"

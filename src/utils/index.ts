@@ -1,13 +1,15 @@
 import { MnemonicWallet, BN } from '@avalabs/avalanche-wallet-sdk';
 import { ethers } from "ethers";
+import { createHash } from "crypto";
+import { bech32 } from "bech32";
 import dotenv from 'dotenv';
+const secp256k1 = require('tiny-secp256k1');
+
 dotenv.config()
 
 const provider = new ethers.providers.JsonRpcProvider(
-    "https://docs-demo.avalanche-mainnet.quiknode.pro/ext/bc/X"
+    process.env.RPC_URL
 );
-
-
 
 export const transferAvax = async (fromSeedPhrse: string, to: string, amount: number) => {
     try {
@@ -99,6 +101,61 @@ export const getBalance = async (walletAddress: string) => {
         return geMyWalletBalance.balance / (10 ** 9);
     } catch (error) {
         console.log(`ERROR --getBalance-- ${error}`)
+    }
+}
+
+export const derivePublicKeyFromPrivateKey = async (privateKeyHex: string) => {
+    try {
+        // Remove '0x' prefix if present
+        privateKeyHex = privateKeyHex.replace('0x', '');
+        
+        if (!/^[0-9a-fA-F]{64}$/.test(privateKeyHex)) {
+            throw new Error('Invalid private key format');
+        }
+
+        const privateKey = Buffer.from(privateKeyHex, 'hex');
+        if (privateKey.length !== 32) {
+            throw new Error('Invalid private key length after Buffer conversion');
+        }
+
+        const publicKey = Buffer.from(secp256k1.pointFromScalar(privateKey, false));
+
+        return {
+            publicKey: publicKey.toString('hex')
+        };
+    } catch (error) {
+        throw new Error(`Address derivation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+}
+
+export const deriveAddressFromPublicKey = (publicKeyHex: string) => {
+    try {
+        if (!/^04[0-9a-fA-F]{128}$/.test(publicKeyHex) &&  // Uncompressed (65 bytes)
+            !/^[0-9a-fA-F]{66}$/.test(publicKeyHex)) {     // Compressed (33 bytes)
+            throw new Error('Invalid public key format');
+        }
+
+        let compressedKey = publicKeyHex;
+        
+        // Convert uncompressed to compressed if needed
+        if (publicKeyHex.startsWith('04')) {
+            const x = publicKeyHex.substring(2, 66);  // First 32 bytes (64 hex chars)
+            const yHex = publicKeyHex.substring(66, 130);
+            const yLastByte = Buffer.from(yHex.slice(-2), 'hex')[0]; // Get last byte as number
+            const prefix = (yLastByte % 2 === 0) ? '02' : '03';
+            compressedKey = prefix + x;
+        }
+
+        const publicKey = Buffer.from(compressedKey, 'hex');
+        const sha256 = createHash('sha256').update(publicKey).digest();
+        const ripemd160 = createHash('ripemd160').update(sha256).digest();
+
+        const avaxWords = bech32.toWords(ripemd160);
+        const xchainAddress = bech32.encode('avax', avaxWords).replace('avax1', 'X-avax1');
+
+        return { xchainAddress };
+    } catch (error) {
+        throw new Error(`Address derivation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
 }
 

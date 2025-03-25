@@ -54,7 +54,6 @@ const WalletController = {
             console.log(`Error - getLatestTxInfo ----- ${error}`)
         }
     }
-
-}
+};
 
 export default WalletController;

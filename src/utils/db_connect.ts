@@ -2,8 +2,8 @@ import mongoose from 'mongoose';
 import dotenv from "dotenv";
 dotenv.config();
 
-const MONGDB_URI = process.env.MONGODB_URI;
-const MONGDB_NAME = process.env.MONGODB_NAME;
+const MONGDB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017';
+const MONGDB_NAME = process.env.MONGODB_NAME || 'avax';
 
 const ConnectDB = async () => {
     try {
